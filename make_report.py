@@ -17,9 +17,9 @@ import os
 import csv
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RESULTS_DIR = os.path.join(HERE, "..", "results")
-FIG_DIR = os.path.join(HERE, "..", "figures")
-OUT_PATH = os.path.join(HERE, "..", "report.md")
+RESULTS_DIR = os.path.join(HERE, "results")
+FIG_DIR = os.path.join(HERE, "figures")
+OUT_PATH = os.path.join(HERE, "report.md")
 
 DATASETS = ["amazon", "classic", "reuters"]
 

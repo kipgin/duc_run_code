@@ -44,9 +44,9 @@ EMBEDDING = "fasttext"
 WEIGHTS = "nbow"
 M_VALUES = [250, 500, 1000, 2000]
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           "..", "results")
+                           "results")
 FIG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                       "..", "figures")
+                       "figures")
 
 # ---------------------------------------------------------------------
 # CONFIG -- fill these in for your environment.
@@ -63,10 +63,9 @@ _SUB_DATASET_MAT_PATHS = {
 _FULL_DATASET_MAT_PATHS = {
     "amazon": os.path.join(_DATA_RAW, "amazon-emd_tr_te_split.mat"),
     "classic": os.path.join(_DATA_RAW, "classic-emd_tr_te_split.mat"),
-    "reuters": os.path.join(_DATA_RAW, "reuters.mat"),
+    "reuters": os.path.join(_DATA_RAW, "r8-emd_tr_te3.mat"),
 }
 DATASET_MAT_PATHS = _SUB_DATASET_MAT_PATHS
-
 
 def _lazy(name):
     """Import heavy modules on first use instead of at module top, so the
@@ -76,15 +75,18 @@ def _lazy(name):
     return importlib.import_module(name)
 
 
+_FASTTEXT_MODEL_PATH = os.path.join(
+    _DATA_RAW, "fasttext", "fasttext-crawl-subwords-300.model")
+
+
 def fasttext_full_loader():
-    """Loads the FULL fastText crawl-300d-2M vectors as {word: vector}.
-    Replace with your HW1 loader (e.g. gensim.models.KeyedVectors.
-    load_word2vec_format(..., binary=False) wrapped in a dict-like)."""
-    raise NotImplementedError(
-        "Point this at your fastText crawl-300d-2M .vec file, e.g.:\n"
-        "  from gensim.models import KeyedVectors\n"
-        "  kv = KeyedVectors.load_word2vec_format(PATH, binary=False)\n"
-        "  return kv")
+    """Loads the FULL fastText crawl-300d-2M-subword vectors (2M words,
+    trained on Common Crawl, 600B tokens) as a dict-like {word: vector}.
+    Downloaded from huggingface.co/fse/fasttext-crawl-subwords-300, which
+    is gensim's native-format re-hosting of fastText's crawl-300d-2M-subword
+    model -- same word list as crawl-300d-2M.vec."""
+    from gensim.models import KeyedVectors
+    return KeyedVectors.load(_FASTTEXT_MODEL_PATH)
 # ---------------------------------------------------------------------
 
 
@@ -288,8 +290,14 @@ def main():
     os.makedirs(RESULTS_DIR, exist_ok=True)
     os.makedirs(FIG_DIR, exist_ok=True)
 
-    datasets = ["amazon", "classic", "reuters"] if args.dataset == "all" \
-        else [args.dataset]
+    if args.dataset == "all":
+        datasets = [d for d in ["amazon", "classic", "reuters"]
+                    if os.path.exists(DATASET_MAT_PATHS[d])]
+        if not datasets:
+            print("No datasets found!")
+            return
+    else:
+        datasets = [args.dataset]
 
     for dataset in datasets:
         print(f"\n===== {dataset} =====")

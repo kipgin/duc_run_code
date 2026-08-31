@@ -23,7 +23,7 @@ RAW = os.path.join(HERE, "data", "raw")
 SOURCES = {
     "amazon": "amazon-emd_tr_te_split.mat",
     "classic": "classic-emd_tr_te_split.mat",
-    "reuters": "reuters.mat",
+    "reuters": "r8-emd_tr_te3.mat",
 }
 
 
@@ -31,7 +31,36 @@ def load_pool(path):
     """Returns (words, bow, X, Y, TR, TE) with TR/TE 1-indexed, using the
     same 'split' schema the pipeline expects."""
     m = sio.loadmat(path, squeeze_me=False, struct_as_record=False)
-    return (m["words"], m["BOW_X"], m["X"], m["Y"], m["TR"], m["TE"])
+    if "words" in m:
+        return (m["words"], m["BOW_X"], m["X"], m["Y"], m["TR"], m["TE"])
+    elif "words_tr" in m:
+        w_tr = m["words_tr"]
+        w_te = m["words_te"]
+        words = np.concatenate([w_tr, w_te], axis=1)
+
+        b_tr = m["BOW_xtr"]
+        b_te = m["BOW_xte"]
+        bow = np.concatenate([b_tr, b_te], axis=1)
+
+        x_tr = m["xtr"]
+        x_te = m["xte"]
+        X = np.concatenate([x_tr, x_te], axis=1)
+
+        y_tr = m["ytr"]
+        y_te = m["yte"]
+        if y_tr.ndim == 1:
+            y_tr = y_tr[None, :]
+        if y_te.ndim == 1:
+            y_te = y_te[None, :]
+        Y = np.concatenate([y_tr, y_te], axis=1)
+
+        n_tr = w_tr.shape[1]
+        n_te = w_te.shape[1]
+        TR = np.arange(1, n_tr + 1)[None, :]
+        TE = np.arange(n_tr + 1, n_tr + n_te + 1)[None, :]
+        return (words, bow, X, Y, TR, TE)
+    else:
+        raise KeyError(f"Unknown format in {path}: {list(m.keys())}")
 
 
 def subset(path, n, out_path):
@@ -88,6 +117,9 @@ def main():
 
     for name, fn in SOURCES.items():
         src = os.path.join(RAW, fn)
+        if not os.path.exists(src):
+            print(f"Skipping {name} (source {src} not found)")
+            continue
         out = os.path.join(RAW, f"{name}{args.prefix}.mat")
         subset(src, args.n, out)
 

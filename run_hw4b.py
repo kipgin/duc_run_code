@@ -187,7 +187,12 @@ def main():
     ap.add_argument("--dataset", choices=["amazon", "classic", "reuters", "all"],
                      default="all")
     args = ap.parse_args()
-    datasets = ["amazon", "classic", "reuters"] if args.dataset == "all" else [args.dataset]
+    from run_hw4 import DATASET_MAT_PATHS
+    if args.dataset == "all":
+        datasets = [d for d in ["amazon", "classic", "reuters"]
+                    if d in DATASET_MAT_PATHS and os.path.exists(DATASET_MAT_PATHS[d])]
+    else:
+        datasets = [args.dataset]
 
     os.makedirs(RESULTS_DIR, exist_ok=True)
     for d in datasets:

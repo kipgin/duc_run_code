@@ -5,131 +5,14 @@
 
 ## amazon
 
-### Main table (deliverable 1)
-
-| distance | mean_test_error | std_test_error | k_stars_per_split |
-| --- | --- | --- | --- |
-| WMD-W1 | 0.096774 | 0.016088 | 27;25;30;25;9 |
-| WMD-W2 | 0.082925 | 0.011719 | 11;21;30;8;15 |
-| FSW-250 | 0.187801 | 0.008642 | 7;6;4;3;3 |
-| FSW-500 | 0.166248 | 0.016464 | 11;9;6;12;6 |
-| FSW-1000 | 0.170285 | 0.020579 | 11;7;5;11;5 |
-| FSW-2000 | 0.172808 | 0.017699 | 6;14;4;6;8 |
-
-### CV curves (deliverable 2)
-
-![CV curves — amazon](figures\cv_curves_amazon.png)
-
-
-### Error vs m (deliverable 3)
-
-![Error vs m — amazon](figures\error_vs_m_amazon.png)
-
-
-### Time table (deliverable 4)
-
-| row | pre_embedding_mean_s | pre_embedding_std_s | per_query_mean_s | per_query_std_s | n_queries | machine |
-| --- | --- | --- | --- | --- | --- | --- |
-| WMD-W1 |  |  | 0.229579 | 0.146383 | 1507 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-250 | 0.661985 | 0.017328 | 0.001112 | 0.000644 | 1507 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-500 | 0.910179 | 0.016938 | 0.001545 | 0.000812 | 1507 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-1000 | 1.271128 | 0.019209 | 0.002305 | 0.001081 | 1507 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-2000 | 1.790784 | 0.067384 | 0.003595 | 0.001602 | 1507 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-
-### Discussion (deliverable 5)
-
-<!-- Write 6-10 sentences here, referencing the numbers above:
-- Does FSW match WMD's accuracy, and for which m?
-- Is the gap to WMD-W2 different from the gap to WMD-W1?
-- Do the CV-vs-k curves for FSW resemble WMD's in shape, or prefer
-  different neighborhood sizes?
-- How do the speed numbers compare, and what do the two tables
-  together say about the accuracy-speed trade? -->
+*(no results/main_table_amazon.csv yet â€” run run_hw4.py --dataset amazon)*
 
 
 ## classic
 
-### Main table (deliverable 1)
-
-| distance | mean_test_error | std_test_error | k_stars_per_split |
-| --- | --- | --- | --- |
-| WMD-W1 | 0.033789 | 0.011895 | 9;9;17;10;14 |
-| WMD-W2 | 0.040533 | 0.016152 | 9;3;14;9;11 |
-| FSW-250 | 0.134317 | 0.020697 | 4;3;5;5;5 |
-| FSW-500 | 0.123963 | 0.027998 | 3;4;4;15;7 |
-| FSW-1000 | 0.118202 | 0.022636 | 25;12;3;3;3 |
-| FSW-2000 | 0.114441 | 0.010569 | 18;16;6;4;13 |
-
-### CV curves (deliverable 2)
-
-![CV curves — classic](figures\cv_curves_classic.png)
-
-
-### Error vs m (deliverable 3)
-
-![Error vs m — classic](figures\error_vs_m_classic.png)
-
-
-### Time table (deliverable 4)
-
-| row | pre_embedding_mean_s | pre_embedding_std_s | per_query_mean_s | per_query_std_s | n_queries | machine |
-| --- | --- | --- | --- | --- | --- | --- |
-| WMD-W1 |  |  | 0.193625 | 0.083851 | 1437 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-250 | 0.615217 | 0.012140 | 0.001064 | 0.000468 | 1437 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-500 | 0.869008 | 0.021013 | 0.001539 | 0.000646 | 1437 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-1000 | 1.252720 | 0.040315 | 0.002191 | 0.000824 | 1437 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-2000 | 1.661573 | 0.031593 | 0.003244 | 0.001143 | 1437 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-
-### Discussion (deliverable 5)
-
-<!-- Write 6-10 sentences here, referencing the numbers above:
-- Does FSW match WMD's accuracy, and for which m?
-- Is the gap to WMD-W2 different from the gap to WMD-W1?
-- Do the CV-vs-k curves for FSW resemble WMD's in shape, or prefer
-  different neighborhood sizes?
-- How do the speed numbers compare, and what do the two tables
-  together say about the accuracy-speed trade? -->
+*(no results/main_table_classic.csv yet â€” run run_hw4.py --dataset classic)*
 
 
 ## reuters
 
-### Main table (deliverable 1)
-
-| distance | mean_test_error | std_test_error | k_stars_per_split |
-| --- | --- | --- | --- |
-| WMD-W1 | 0.059649 | 0.000000 | 5 |
-| WMD-W2 | 0.063158 | 0.000000 | 4 |
-| FSW-250 | 0.091228 | 0.000000 | 7 |
-| FSW-500 | 0.091228 | 0.000000 | 4 |
-| FSW-1000 | 0.070175 | 0.000000 | 8 |
-| FSW-2000 | 0.094737 | 0.000000 | 3 |
-
-### CV curves (deliverable 2)
-
-![CV curves — reuters](figures\cv_curves_reuters.png)
-
-
-### Error vs m (deliverable 3)
-
-![Error vs m — reuters](figures\error_vs_m_reuters.png)
-
-
-### Time table (deliverable 4)
-
-| row | pre_embedding_mean_s | pre_embedding_std_s | per_query_mean_s | per_query_std_s | n_queries | machine |
-| --- | --- | --- | --- | --- | --- | --- |
-| WMD-W1 |  |  | 0.175527 | 0.095741 | 285 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-250 | 0.683573 | 0.000000 | 0.000957 | 0.000573 | 285 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-500 | 0.807406 | 0.000000 | 0.001344 | 0.000715 | 285 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-1000 | 1.121313 | 0.000000 | 0.001983 | 0.000916 | 285 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-| FSW-2000 | 1.639919 | 0.000000 | 0.003069 | 0.001399 | 285 | Owraanr (NVIDIA GeForce RTX 4060 Laptop GPU) |
-
-### Discussion (deliverable 5)
-
-<!-- Write 6-10 sentences here, referencing the numbers above:
-- Does FSW match WMD's accuracy, and for which m?
-- Is the gap to WMD-W2 different from the gap to WMD-W1?
-- Do the CV-vs-k curves for FSW resemble WMD's in shape, or prefer
-  different neighborhood sizes?
-- How do the speed numbers compare, and what do the two tables
-  together say about the accuracy-speed trade? -->
+*(no results/main_table_reuters.csv yet â€” run run_hw4.py --dataset reuters)*

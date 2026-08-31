@@ -233,7 +233,7 @@ def default_num_workers():
     if v:
         return int(v)
     try:
-        return min(os.cpu_count() or 1, 10)
+        return min(os.cpu_count() or 1, 4)
     except TypeError:
         return 1
 

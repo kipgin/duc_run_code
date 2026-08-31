@@ -16,8 +16,8 @@ import csv
 import json
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RESULTS_DIR = os.path.join(HERE, "..", "results")
-OUT_PATH = os.path.join(HERE, "..", "report_4b.md")
+RESULTS_DIR = os.path.join(HERE, "results")
+OUT_PATH = os.path.join(HERE, "report_4b.md")
 
 DATASETS = ["amazon", "classic", "reuters"]
 

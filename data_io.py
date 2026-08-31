@@ -83,10 +83,39 @@ def _load_raw_mat(path):
     align with `BOW_X` counts. `words` are kept only for reference.
     """
     m = sio.loadmat(path, squeeze_me=True, struct_as_record=False)
-    words_cell = m["words"]
-    bow_cell = m["BOW_X"]
-    x_cell = m["X"]
-    y = np.asarray(m["Y"]).astype(int).reshape(-1)
+    if "words" in m:
+        words_cell = np.atleast_1d(m["words"])
+        bow_cell = np.atleast_1d(m["BOW_X"])
+        x_cell = np.atleast_1d(m["X"])
+        y = np.asarray(m["Y"]).astype(int).reshape(-1)
+        tr = _rows_to_indices(m["TR"])
+        te = _rows_to_indices(m["TE"])
+    elif "words_tr" in m:
+        words_tr = np.atleast_1d(m["words_tr"])
+        words_te = np.atleast_1d(m["words_te"])
+        words_cell = np.concatenate([words_tr, words_te])
+
+        bow_tr = np.atleast_1d(m["BOW_xtr"])
+        bow_te = np.atleast_1d(m["BOW_xte"])
+        bow_cell = np.concatenate([bow_tr, bow_te])
+
+        x_tr = np.atleast_1d(m["xtr"])
+        x_te = np.atleast_1d(m["xte"])
+        x_cell = np.concatenate([x_tr, x_te])
+
+        y_tr = np.asarray(m["ytr"]).astype(int).reshape(-1)
+        y_te = np.asarray(m["yte"]).astype(int).reshape(-1)
+        y = np.concatenate([y_tr, y_te])
+
+        n_tr = len(words_tr)
+        n_te = len(words_te)
+        tr = [np.arange(n_tr)]
+        te = [np.arange(n_tr, n_tr + n_te)]
+    else:
+        raise KeyError(
+            f"Unknown .mat structure in {path}. "
+            f"Keys found: {[k for k in m.keys() if not k.startswith('__')]}"
+        )
 
     n_docs = len(words_cell)
     docs_tokens = []
@@ -100,8 +129,6 @@ def _load_raw_mat(path):
         docs_counts.append(cnts)
         X_list.append(xmat)
 
-    tr = _rows_to_indices(m["TR"])   # list of 0-indexed index arrays, 1 per split
-    te = _rows_to_indices(m["TE"])
     return docs_tokens, docs_counts, X_list, y, tr, te
 
 
