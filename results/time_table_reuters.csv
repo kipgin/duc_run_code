@@ -1,0 +1,6 @@
+row,pre_embedding_mean_s,pre_embedding_std_s,per_query_mean_s,per_query_std_s,n_queries,machine
+WMD-W1,,,0.386690,0.237002,285,codespaces-35d69c (x86_64)
+FSW-250,0.762929,0.000000,0.001146,0.000655,285,codespaces-35d69c (x86_64)
+FSW-500,1.093218,0.000000,0.001766,0.001262,285,codespaces-35d69c (x86_64)
+FSW-1000,1.762365,0.000000,0.004619,0.004624,285,codespaces-35d69c (x86_64)
+FSW-2000,3.734332,0.000000,0.013409,0.014006,285,codespaces-35d69c (x86_64)

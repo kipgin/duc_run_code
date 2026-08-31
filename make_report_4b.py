@@ -64,7 +64,9 @@ def main():
     for dataset in DATASETS:
         parts.append(f"\n## {dataset}\n")
 
-        alpha_path = os.path.join(RESULTS_DIR, f"alpha_values_{dataset}.json")
+        alpha_path = os.path.join(RESULTS_DIR, f"hw4b_alpha_values_{dataset}.json")
+        if not os.path.exists(alpha_path):
+            alpha_path = os.path.join(RESULTS_DIR, f"alpha_values_{dataset}.json")
         if os.path.exists(alpha_path):
             with open(alpha_path) as f:
                 alphas = json.load(f)

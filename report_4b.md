@@ -15,4 +15,24 @@
 
 ## reuters
 
-*(no results/hw4b_main_table_reuters.csv yet — run run_hw4b.py --dataset reuters)*
+### Main table (deliverable 1) + coverage (deliverable 2)
+
+| row | alpha | mean_test_error | std_test_error | k_stars_per_split | shortlist_mean | shortlist_median | shortlist_p95 | coverage_top10 | est_time_s |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| FSW-1000 (pure) |  | 0.070175 | 0.000000 | 8 |  |  |  |  | 0.004619 |
+| combined (alpha=sqrt(P98/P2)) | 1.4513 | 0.06315789473684211 | 0.0 | 4 | 317.97543859649124 | 299.0 | 690.6 | 0.998 | 0.17658812216905903 |
+| combined (alpha=P98/P2) | 2.1063 | 0.06315789473684211 | 0.0 | 4 | 662.4842105263158 | 694.0 | 715.0 | 1.0 | 0.36290713897681265 |
+| combined (alpha=rmax/rmin) | 3.0823 | 0.06315789473684211 | 0.0 | 4 | 713.9754385964912 | 715.0 | 715.0 | 1.0 | 0.3907548913998282 |
+| combined (alpha=2*rmax/rmin) | 6.1647 | 0.06315789473684211 | 0.0 | 4 | 715.0 | 715.0 | 715.0 | 1.0 | 0.39130899999999996 |
+| WMD-W2 (pure) |  | 0.063158 | 0.000000 | 4 |  |  |  |  | 0.386690 |
+
+### Discussion (deliverable 3)
+
+<!-- Write 5-8 sentences here, referencing the numbers above:
+- At which alpha does the combined method match exact WMD's accuracy,
+  per dataset?
+- What does that alpha cost in average shortlist size and estimated time?
+- Does classic (the dataset with the largest distortion per HW3) need a
+  larger alpha or larger shortlists than the others?
+- Where does the combined method land on the accuracy-time trade-off
+  relative to the two pure methods (FSW-1000 alone, WMD-W2 alone)? -->

@@ -48,9 +48,9 @@ M_SHORTLIST = 1000
 def compute_alphas(dataset, V_fsw, D_w2):
     stats = sample_ratio_stats(V_fsw, D_w2, n_pairs=5000, seed=0)
     alphas = alpha_values(stats)
-    with open(os.path.join(RESULTS_DIR, f"distortion_stats_{dataset}.json"), "w") as f:
+    with open(os.path.join(RESULTS_DIR, f"hw4b_distortion_stats_{dataset}.json"), "w") as f:
         json.dump(stats, f, indent=2)
-    with open(os.path.join(RESULTS_DIR, f"alpha_values_{dataset}.json"), "w") as f:
+    with open(os.path.join(RESULTS_DIR, f"hw4b_alpha_values_{dataset}.json"), "w") as f:
         json.dump(alphas, f, indent=2)
     return alphas
 
